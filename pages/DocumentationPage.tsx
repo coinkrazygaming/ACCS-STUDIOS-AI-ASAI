@@ -12,16 +12,6 @@ const Section: React.FC<{ id: string; title: string; children: React.ReactNode }
         <div className="prose prose-invert max-w-none text-base-content/90">
             {children}
         </div>
-        <style>{`
-            .prose h3 { font-size: 1.5rem; font-weight: 600; color: var(--color-base-content); margin-top: 2em; border-bottom: 1px solid var(--color-base-300); padding-bottom: 0.3em; margin-bottom: 1em; }
-            .prose h4 { font-size: 1.1rem; font-weight: 600; color: var(--color-neutral); margin-top: 1.5em; }
-            .prose p { margin-top: 0.75em; line-height: 1.7; }
-            .prose ul { list-style-type: disc; margin-left: 1.5em; margin-top: 0.75em; }
-            .prose li { margin-top: 0.5em; }
-            .prose code { background-color: var(--color-base-300); color: var(--color-accent); padding: 0.2em 0.4em; border-radius: 0.25rem; font-size: 0.9em; }
-            .prose a { color: var(--color-primary); text-decoration: none; }
-            .prose a:hover { text-decoration: underline; }
-        `}</style>
     </section>
 );
 

@@ -158,15 +158,6 @@ const MockEditor: React.FC = () => {
           </div>
         </div>
       </div>
-      <style>{`
-        @keyframes blink {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-        .animate-blink {
-          animation: blink 1s infinite steps(1, start);
-        }
-      `}</style>
     </div>
   );
 };
@@ -346,22 +337,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStartBuilding, onSignInClic
                     </a>
                 </div>
             </footer>
-
-            <style>{`
-                .bg-grid-pattern {
-                    background-image: linear-gradient(var(--color-base-300) 1px, transparent 1px), linear-gradient(to right, var(--color-base-300) 1px, transparent 1px);
-                    background-size: 2rem 2rem;
-                }
-                .scroll-animate {
-                    opacity: 0;
-                    transform: translateY(20px);
-                    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-                }
-                .scroll-animate.in-view {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            `}</style>
         </div>
     );
 };
