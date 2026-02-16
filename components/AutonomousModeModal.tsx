@@ -207,13 +207,6 @@ const AutonomousModeModal: React.FC<AutonomousModeModalProps> = ({
             </div>
         </div>
         {renderContent()}
-        <style>{`
-          @keyframes fade-in {
-              from { opacity: 0; transform: translateY(5px); }
-              to { opacity: 1; transform: translateY(0); }
-          }
-          .animate-fade-in { animation: fade-in 0.3s ease-out; }
-        `}</style>
       </div>
     </div>
   );
