@@ -1343,9 +1343,11 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
                             )}
                         </div>
                         <div onMouseDown={() => {isResizingMain.current = true; document.body.style.cursor = 'col-resize';}} className="w-1.5 h-full cursor-col-resize bg-base-300 hover:bg-primary transition-colors"></div>
-                        <div className="flex-grow h-full" style={{ display: isPreviewPaneOpen ? 'block' : 'none' }}>
-                             <SandboxPreview files={files} projectType={project.type} />
-                        </div>
+                        {(isPreviewPaneOpen || isFullScreenPreview) && (
+                            <div className={isFullScreenPreview ? '' : 'flex-grow h-full'}>
+                                 <SandboxPreview files={files} projectType={project.type} isFullScreen={isFullScreenPreview} onCloseFullScreen={() => setIsFullScreenPreview(false)} />
+                            </div>
+                        )}
                     </div>
                      {isBottomPanelOpen && (
                         <>
@@ -1388,7 +1390,6 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
             <DeploymentModal isOpen={isDeploymentModalOpen} onClose={() => setIsDeploymentModalOpen(false)} onDeployCodeSandbox={()=>{}} isDeploying={isDeploying} />
             <SvgDesignModal isOpen={isSvgDesignModalOpen} onClose={() => setIsSvgDesignModalOpen(false)} onGenerate={handleGenerateSvg} onSaveToFile={handleSaveSvgToFile} onApplyAsIcon={handleApplySvgAsIcon} isGenerating={isAiLoading} project={project} />
             <GodModeModal isOpen={isGodModeModalOpen} onClose={() => setIsGodModeModalOpen(false)} onStart={handleStartGodMode} isLoading={isAiLoading} apiConfig={apiConfig} />
-            {isFullScreenPreview && <SandboxPreview files={files} projectType={project.type} isFullScreen onCloseFullScreen={() => setIsFullScreenPreview(false)} />}
             {contextMenu && <ContextMenu x={contextMenu.x} y={contextMenu.y} items={contextMenuItems} onClose={() => setContextMenu(null)} />}
         </div>
     );

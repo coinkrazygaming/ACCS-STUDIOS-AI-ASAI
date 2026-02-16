@@ -262,7 +262,7 @@ const VmEmbed: React.FC<{
 });
 
 
-const SandboxPreview: React.FC<SandboxPreviewProps> = ({ files, projectType, isFullScreen, onCloseFullScreen, isMobile }) => {
+const SandboxPreview: React.FC<SandboxPreviewProps> = ({ files, projectType, isFullScreen = false, onCloseFullScreen, isMobile }) => {
   const [embedKey, setEmbedKey] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -272,18 +272,18 @@ const SandboxPreview: React.FC<SandboxPreviewProps> = ({ files, projectType, isF
       setError(null);
       setEmbedKey(k => k + 1);
   };
-  
+
   useEffect(() => {
       if (files.length === 0 && embedKey === 0) {
           setIsLoading(false);
           return;
       }
-      
+
       const handler = setTimeout(() => {
           setIsLoading(true);
           setError(null);
           setEmbedKey(k => k + 1);
-      }, 1000);
+      }, 500);
 
       return () => {
           clearTimeout(handler);
@@ -291,7 +291,7 @@ const SandboxPreview: React.FC<SandboxPreviewProps> = ({ files, projectType, isF
   }, [files, projectType]);
   
   const wrapperClasses = isFullScreen
-    ? 'fixed inset-0 bg-base-100 z-50 flex flex-col'
+    ? 'fixed inset-0 bg-base-100 z-[60] flex flex-col'
     : 'h-full bg-base-100 flex flex-col';
 
 
