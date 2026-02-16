@@ -46,14 +46,6 @@ const CodeBlock: React.FC<{ language: string, code: string }> = ({ language, cod
             <pre className="p-3 text-sm overflow-x-auto font-mono">
                 <code dangerouslySetInnerHTML={{ __html: highlightSyntax(code) }} />
             </pre>
-            {/* Using a style tag is a simple way to scope styles for this component without a CSS file */}
-            <style>{`
-                .code-block .syntax-keyword { color: #c586c0; }
-                .code-block .syntax-string { color: #ce9178; }
-                .code-block .syntax-comment { color: #6a9955; font-style: italic; }
-                .code-block .syntax-tag { color: #569cd6; }
-                .code-block .syntax-prop { color: #9cdcfe; }
-            `}</style>
         </div>
     );
 };
@@ -531,7 +523,6 @@ const ChatInterface: React.FC<ChatInterfaceProps> = (props) => {
                     </button>
                 </div>
             </form>
-            <style>{`.typing-indicator{display:flex;align-items:center;justify-content:center}.typing-indicator div{width:6px;height:6px;background-color:var(--color-neutral);border-radius:50%;margin:0 2px;animation:typing-wave 1.2s infinite ease-in-out}.typing-indicator div:nth-child(2){animation-delay:.1s}.typing-indicator div:nth-child(3){animation-delay:.2s}@keyframes typing-wave{0%,60%,100%{transform:initial}30%{transform:translateY(-6px)}}`}</style>
         </div>
     );
 };
