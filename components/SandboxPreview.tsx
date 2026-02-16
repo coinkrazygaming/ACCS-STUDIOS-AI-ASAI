@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, memo } from 'react';
+import React, { useEffect, useRef, useState, memo, useMemo } from 'react';
 import sdk from '@stackblitz/sdk';
 import { FileNode } from '../types';
 import Spinner from './ui/Spinner';
@@ -162,7 +162,15 @@ const VmEmbed: React.FC<{
   projectType: string;
   onVmReady: () => void;
   onError: (errorMsg: string) => void;
-}> = memo(({ files, projectType, onVmReady, onError }) => {
+}> = memo(({ files, projectType, onVmReady, onError }) => {}, (prevProps, nextProps) => {
+    // Return true if props are equal (to skip re-render), false otherwise
+    if (prevProps.projectType !== nextProps.projectType) return false;
+    if (prevProps.files.length !== nextProps.files.length) return false;
+    // Compare file paths and content to detect actual changes
+    const prevPaths = prevProps.files.map(f => f.path).sort().join('|');
+    const nextPaths = nextProps.files.map(f => f.path).sort().join('|');
+    return prevPaths === nextPaths;
+}) || (({ files, projectType, onVmReady, onError }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const vmRef = useRef<any>(null);
 
@@ -267,6 +275,11 @@ const SandboxPreview: React.FC<SandboxPreviewProps> = ({ files, projectType, isF
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Create a stable key based on files content to prevent unnecessary remounts
+  const filesKey = useMemo(() => {
+      return files.map(f => f.path).sort().join('|');
+  }, [files]);
+
   const forceRefresh = () => {
       setIsLoading(true);
       setError(null);
@@ -288,7 +301,7 @@ const SandboxPreview: React.FC<SandboxPreviewProps> = ({ files, projectType, isF
       return () => {
           clearTimeout(handler);
       };
-  }, [files, projectType]);
+  }, [filesKey, projectType, files.length]);
   
   const wrapperClasses = isFullScreen
     ? 'fixed inset-0 bg-base-100 z-[60] flex flex-col'
