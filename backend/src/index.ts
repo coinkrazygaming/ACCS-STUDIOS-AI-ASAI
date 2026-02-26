@@ -5,6 +5,7 @@ import { initializeApp, cert } from 'firebase-admin/app';
 import { getFirestore } from 'firebase-admin/firestore';
 import { githubRouter } from './routes/github.js';
 import { projectRouter } from './routes/project.js';
+import { githubPrRouter } from './routes/github-pr.js';
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ export const db = getFirestore();
 // Routes
 app.use('/api/github', githubRouter);
 app.use('/api/projects', projectRouter);
+app.use('/api/github', githubPrRouter);
 
 // Health check
 app.get('/health', (req, res) => {

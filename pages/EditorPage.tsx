@@ -1201,7 +1201,7 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
     if (isMobile) {
         return (
             <div className="h-screen w-screen flex flex-col bg-base-100 overflow-hidden">
-                <Header 
+                <Header
                     user={user} project={project} onDownload={handleDownload} onApiKeyClick={() => setIsApiKeyModalOpen(true)}
                     onSettingsClick={() => setIsSettingsModalOpen(true)} onUndo={handleUndo} onRedo={handleRedo}
                     canUndo={canUndo} canRedo={canRedo} onAnalyzeClick={handleAnalyzeCode}
@@ -1212,6 +1212,7 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
                     onToggleBottomPanel={() => {}} onProfileClick={() => setIsProfileModalOpen(true)} onShareClick={() => setIsShareModalOpen(true)}
                     onDeployClick={() => setIsDeploymentModalOpen(true)}
                     onDesignClick={() => setIsSvgDesignModalOpen(true)}
+                    onGitHubClick={() => setIsGitHubModalOpen(true)}
                     isAiLoading={isAiLoading} isMobile
                 />
                 <main className="flex-grow overflow-hidden">
@@ -1276,7 +1277,7 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
     return (
         <div className="h-screen w-screen flex flex-col bg-base-100 overflow-hidden">
             {isGodModeActive && <GodModeStatus currentAction={currentGodModeAction} onStop={handleStopGodMode} />}
-            <Header 
+            <Header
                 user={user} project={project} onDownload={handleDownload} onApiKeyClick={() => setIsApiKeyModalOpen(true)}
                 onSettingsClick={() => setIsSettingsModalOpen(true)} onUndo={handleUndo} onRedo={handleRedo}
                 canUndo={canUndo} canRedo={canRedo} onAnalyzeClick={handleAnalyzeCode}
@@ -1288,6 +1289,7 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
                 onShareClick={() => setIsShareModalOpen(true)}
                 onDeployClick={() => setIsDeploymentModalOpen(true)}
                 onDesignClick={() => setIsSvgDesignModalOpen(true)}
+                onGitHubClick={() => setIsGitHubModalOpen(true)}
                 isAiLoading={isAiLoading} isMobile={false}
             />
             <main className="flex-grow flex overflow-hidden">
