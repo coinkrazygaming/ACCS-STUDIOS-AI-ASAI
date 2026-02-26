@@ -1,0 +1,26 @@
+{
+  "name": "asai-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Backend for Smart AI Builder with GitHub integration",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "firebase-admin": "^12.0.0",
+    "@octokit/rest": "^20.0.2",
+    "axios": "^1.6.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.5",
+    "typescript": "~5.8.2",
+    "ts-node": "^10.9.2"
+  }
+}
