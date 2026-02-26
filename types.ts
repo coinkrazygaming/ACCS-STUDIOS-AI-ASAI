@@ -33,6 +33,22 @@ export interface Project {
     url: string;
     lastDeployed: firebase.firestore.Timestamp;
   } | null;
+  github?: {
+    connected: boolean;
+    username?: string;
+    userId?: number;
+    token?: string;
+    owner?: string;
+    repo?: string;
+    branch?: string;
+    repoId?: number;
+    connectedAt?: firebase.firestore.Timestamp;
+    disconnectedAt?: firebase.firestore.Timestamp;
+    configuredAt?: firebase.firestore.Timestamp;
+    lastPushedAt?: firebase.firestore.Timestamp;
+    lastCommitSha?: string;
+    lastCommitUrl?: string;
+  };
 }
 
 export interface FileNode {
