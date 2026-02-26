@@ -29,6 +29,7 @@ import Console from '../components/Console';
 import Terminal from '../components/Terminal';
 import ContextMenu, { ContextMenuItem } from '../components/ui/ContextMenu';
 import DeploymentModal from '../components/DeploymentModal';
+import GitHubIntegrationModal from '../components/GitHubIntegrationModal';
 import ChatInterface from '../components/ChatInterface';
 import MobileNavBar from '../components/MobileNavBar';
 import FileExplorer from '../components/FileExplorer';
@@ -87,6 +88,7 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
     const [isShareModalOpen, setIsShareModalOpen] = useState(false);
     const [isDeploymentModalOpen, setIsDeploymentModalOpen] = useState(false);
     const [isSvgDesignModalOpen, setIsSvgDesignModalOpen] = useState(false);
+    const [isGitHubModalOpen, setIsGitHubModalOpen] = useState(false);
     const [isGodModeModalOpen, setIsGodModeModalOpen] = useState(false);
     const [isDeploying, setIsDeploying] = useState(false);
     const [isFixing, setIsFixing] = useState(false);
@@ -1262,6 +1264,7 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
                 <ProfileSettingsModal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} user={user} onUpdateSuccess={refreshUserProfile} />
                 <ShareProjectModal isOpen={isShareModalOpen} onClose={() => setIsShareModalOpen(false)} projectId={projectId} onGenerateKey={handleGenerateShareKey} isCollaborationEnabled={isCollaborationEnabled} ownerUid={project.ownerId} />
                 <DeploymentModal isOpen={isDeploymentModalOpen} onClose={() => setIsDeploymentModalOpen(false)} onDeployCodeSandbox={()=>{}} isDeploying={isDeploying} />
+                <GitHubIntegrationModal isOpen={isGitHubModalOpen} onClose={() => setIsGitHubModalOpen(false)} project={project} files={files} />
                  <SvgDesignModal isOpen={isSvgDesignModalOpen} onClose={() => setIsSvgDesignModalOpen(false)} onGenerate={handleGenerateSvg} onSaveToFile={handleSaveSvgToFile} onApplyAsIcon={handleApplySvgAsIcon} isGenerating={isAiLoading} project={project}/>
                 <GodModeModal isOpen={isGodModeModalOpen} onClose={() => setIsGodModeModalOpen(false)} onStart={handleStartGodMode} isLoading={isAiLoading} apiConfig={apiConfig} />
                 {isFullScreenPreview && <SandboxPreview files={files} projectType={project.type} isFullScreen onCloseFullScreen={() => setIsFullScreenPreview(false)} />}
@@ -1388,6 +1391,7 @@ const EditorPage: React.FC<EditorPageProps> = ({ projectId, onBackToDashboard, u
             <ProfileSettingsModal isOpen={isProfileModalOpen} onClose={() => setIsProfileModalOpen(false)} user={user} onUpdateSuccess={refreshUserProfile} />
             <ShareProjectModal isOpen={isShareModalOpen} onClose={() => setIsShareModalOpen(false)} projectId={projectId} onGenerateKey={handleGenerateShareKey} isCollaborationEnabled={isCollaborationEnabled} ownerUid={project.ownerId} />
             <DeploymentModal isOpen={isDeploymentModalOpen} onClose={() => setIsDeploymentModalOpen(false)} onDeployCodeSandbox={()=>{}} isDeploying={isDeploying} />
+            <GitHubIntegrationModal isOpen={isGitHubModalOpen} onClose={() => setIsGitHubModalOpen(false)} project={project} files={files} />
             <SvgDesignModal isOpen={isSvgDesignModalOpen} onClose={() => setIsSvgDesignModalOpen(false)} onGenerate={handleGenerateSvg} onSaveToFile={handleSaveSvgToFile} onApplyAsIcon={handleApplySvgAsIcon} isGenerating={isAiLoading} project={project} />
             <GodModeModal isOpen={isGodModeModalOpen} onClose={() => setIsGodModeModalOpen(false)} onStart={handleStartGodMode} isLoading={isAiLoading} apiConfig={apiConfig} />
             {contextMenu && <ContextMenu x={contextMenu.x} y={contextMenu.y} items={contextMenuItems} onClose={() => setContextMenu(null)} />}
